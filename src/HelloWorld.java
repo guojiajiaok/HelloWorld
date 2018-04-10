@@ -1,15 +1,31 @@
+import java.util.ArrayList;
+
 public class HelloWorld {
     public static void main(String[] args) {
-        int sum = 0;
-        for (int i = 2; i <= 100; i++) {
-            int j = 2;
-            while (i % j != 0) {
-                j++;
+        long startTime = System.currentTimeMillis();
+        var list = new ArrayList<Integer>();
+        list.add(2);
+        boolean isP = true;
+        for (int i = 3; i < 1000000; i += 2) {
+            for (int j = 0; j < list.size(); j++) {
+                if (list.get(j) * list.get(j) > i) {
+                    isP = true;
+                    break;
+                } else if (i % list.get(j) == 0) {
+                    isP = false;
+                    break;
+                }
             }
-            if (i == j) {
-                sum += i;
-            }
+            if (isP)
+                list.add(i);
         }
-        System.out.println(sum);
+        long endTime = System.currentTimeMillis();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + ", ");
+            if ((i + 1) % 10 == 0)
+                System.out.println("");
+        }
+        System.out.println("");
+        System.out.println("cost: " + (endTime - startTime) + "ms");
     }
 }
