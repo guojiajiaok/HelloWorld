@@ -23,9 +23,9 @@ public class HelloWorld {
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i) + ", ");
             if ((i + 1) % 10 == 0)
-                System.out.println("");
+                System.out.println();
         }
-        System.out.println("");
+        System.out.println();
         System.out.println("cost: " + (endTime - startTime) + "ms");
     }
 }
