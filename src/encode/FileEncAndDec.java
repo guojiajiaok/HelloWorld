@@ -16,34 +16,33 @@ import javax.crypto.KeyGenerator;
 
 public class FileEncAndDec {
 
-    Key key;
+    private Key key;
     //DES加密
-    public FileEncAndDec(String str) {
+    private FileEncAndDec(String str) {
         getKey(str);// 生成密匙
     }
 
     /**
      * 根据参数生成KEY
      */
-    public void getKey(String strKey) {
+    private void getKey(String strKey) {
         try {
             KeyGenerator _generator = KeyGenerator.getInstance("DES");
             _generator.init(new SecureRandom(strKey.getBytes()));
             this.key = _generator.generateKey();
-            _generator = null;
         } catch (Exception e) {
             throw new RuntimeException("Error initializing SqlMap class. Cause: " + e);
         }
     }
 
     //插入一段文件干扰
-    public static final String PATH = "F:\\testEnc";
+    private static final String PATH = "F:\\testEnc";
 
     /**
      * 加密
      * @throws Exception
      */
-    public void encode() throws Exception {
+    private void encode() throws Exception {
 
         // 获取密钥文件
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(PATH + "\\password")));
@@ -65,7 +64,7 @@ public class FileEncAndDec {
         bosNew.write(passwd);
 
         byte[] buffer = new byte[1024];
-        int len = 0;
+        int len;
         // 加密文件
         while ((len = cis.read(buffer)) > 0) {
             bosNew.write(buffer, 0, len);
@@ -83,7 +82,7 @@ public class FileEncAndDec {
      * 解密
      * @throws Exception
      */
-    public void decode() throws Exception {
+    private void decode() throws Exception {
         //DES加密
         Cipher cipher = Cipher.getInstance("DES");
         cipher.init(Cipher.DECRYPT_MODE, this.key);
@@ -101,10 +100,9 @@ public class FileEncAndDec {
         CipherOutputStream cos = new CipherOutputStream(bosNew, cipher);
         // 获取密钥
         bisOld.read(passwd);
-        passwd = null;
 
         byte[] buffer = new byte[1024];
-        int len = 0;
+        int len;
 
         while ((len = bisOld.read(buffer)) > 0) {
             cos.write(buffer, 0, len);
