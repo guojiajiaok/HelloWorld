@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class HelloWorld {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        var list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<Integer>();
         list.add(2);
         boolean isP = true;
-        for (int i = 3; i < 1000000; i += 2) {
+        for (int i = 3; i < 100000; i += 2) {
             for (int j = 0; j < list.size(); j++) {
                 if (list.get(j) * list.get(j) > i) {
                     isP = true;

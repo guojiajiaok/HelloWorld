@@ -17,9 +17,9 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AESTest {
 
-    private static final String PATH = "F:\\testEnc";
-    private static final String File = "\\asd.mp4";
-    private static final String SECRET_KEY = "ab6cd5duywhd534g";
+    private static  String PATH = "F:\\testEnc";
+    private static  String File = "\\8.jpg";
+    private static  String SECRET_KEY = "bjyfuvgjhffcjtufuyjf=";
 
     /**
      * 加密
@@ -109,8 +109,7 @@ public class AESTest {
 
     public static void main(String[] args) throws Exception {
         AESTest t = new AESTest();
-        // 加密
-        t.encode();
+        //t.encode();
         // 解密
         t.decode();
     }
